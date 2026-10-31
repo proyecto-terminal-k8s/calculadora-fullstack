@@ -1,0 +1,9 @@
+services:
+  calculadora:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./logs:/app/logs
+    environment:
+      REQUEST_LOG_FILE: /app/logs/api-requests.txt

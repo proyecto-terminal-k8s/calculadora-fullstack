@@ -1,0 +1,42 @@
+# Backend — Maven, IDEs and logs
+/backend/HELP.md
+/backend/target/
+/backend/logs/*.txt
+/backend/.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### Backend — Spring Tool Suite ###
+/backend/.apt_generated
+/backend/.classpath
+/backend/.factorypath
+/backend/.project
+/backend/.settings/
+/backend/.springBeans
+/backend/.sts4-cache
+
+### Backend — IntelliJ IDEA ###
+/backend/.idea/
+/backend/*.iws
+/backend/*.iml
+/backend/*.ipr
+
+### Backend — NetBeans ###
+/backend/nbproject/private/
+/backend/nbbuild/
+/backend/build/
+/backend/dist/
+/backend/nbdist/
+/backend/.nb-gradle/
+/backend/**/src/main/**/build/
+/backend/**/src/test/**/build/
+
+### Backend — VS Code ###
+/backend/.vscode/
+
+### Frontend — dependencies, build and environment ###
+/frontend/node_modules/
+/frontend/dist/
+/frontend/.env
+/frontend/.env.*
+!/frontend/.env.example

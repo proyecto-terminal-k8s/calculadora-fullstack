@@ -1,0 +1,8 @@
+2026-10-10T13:09:28.339-06:00 INFO  Peticion HTTP: metodo=GET, ruta=/api/v1/calculadora/multiplicar, estado=200, duracion_ms=43
+2026-10-10T13:09:28.370-06:00 INFO  Peticion HTTP: metodo=GET, ruta=/api/v1/calculadora/dividir, estado=400, duracion_ms=9
+2026-10-10T13:09:28.544-06:00 INFO  Peticion HTTP: metodo=GET, ruta=/v3/api-docs, estado=200, duracion_ms=169
+2026-10-10T13:09:28.553-06:00 INFO  Peticion HTTP: metodo=GET, ruta=/health, estado=200, duracion_ms=2
+2026-10-10T13:09:28.560-06:00 INFO  Peticion HTTP: metodo=GET, ruta=/api/v1/calculadora/sumar, estado=200, duracion_ms=1
+2026-10-10T13:09:28.568-06:00 INFO  Peticion HTTP: metodo=GET, ruta=/api/v1/calculadora/restar, estado=200, duracion_ms=1
+2026-10-10T13:09:28.573-06:00 INFO  Peticion HTTP: metodo=GET, ruta=/api/v1/calculadora/dividir, estado=200, duracion_ms=1
+2026-10-10T13:09:28.579-06:00 INFO  Peticion HTTP: metodo=GET, ruta=/health, estado=200, duracion_ms=0

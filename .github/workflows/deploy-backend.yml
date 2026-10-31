@@ -1,0 +1,126 @@
+name: Deploy backend to EC2 with CodeDeploy
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  desplegar:
+    name: Publish image and deploy
+    runs-on: ubuntu-latest
+    env:
+      AWS_REGION: ${{ vars.AWS_REGION }}
+      ECR_REPOSITORY: ${{ vars.ECR_REPOSITORY }}
+      CODEDEPLOY_APPLICATION: ${{ vars.CODEDEPLOY_APPLICATION }}
+      CODEDEPLOY_DEPLOYMENT_GROUP: ${{ vars.CODEDEPLOY_DEPLOYMENT_GROUP }}
+      S3_BUCKET: ${{ vars.S3_BUCKET }}
+
+    steps:
+      - name: Allow deployments only from main
+        run: |
+          if [[ "$GITHUB_REF" != "refs/heads/main" ]]; then
+            echo "::error::Run this workflow from the main branch."
+            exit 1
+          fi
+
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+          cache-dependency-path: backend/pom.xml
+
+      - name: Run backend tests
+        working-directory: backend
+        run: ./mvnw --batch-mode --no-transfer-progress test
+
+      - name: Configure AWS credentials with OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Validate configuration
+        run: |
+          if [[ -z "$AWS_REGION" || -z "$ECR_REPOSITORY" || -z "$CODEDEPLOY_APPLICATION" || -z "$CODEDEPLOY_DEPLOYMENT_GROUP" || -z "$S3_BUCKET" ]]; then
+            echo "::error::Configure AWS_REGION, ECR_REPOSITORY, CODEDEPLOY_APPLICATION, CODEDEPLOY_DEPLOYMENT_GROUP and S3_BUCKET."
+            exit 1
+          fi
+
+      - name: Get image URI
+        id: image
+        run: |
+          repository_uri="$(aws ecr describe-repositories \
+            --repository-names "$ECR_REPOSITORY" \
+            --query 'repositories[0].repositoryUri' \
+            --output text)"
+          if [[ -z "$repository_uri" || "$repository_uri" == "None" ]]; then
+            echo "::error::ECR repository not found."
+            exit 1
+          fi
+          registry="${repository_uri%%/*}"
+          image_uri="${repository_uri}:${GITHUB_SHA}"
+          echo "registry=${registry}" >> "$GITHUB_OUTPUT"
+          echo "image_uri=${image_uri}" >> "$GITHUB_OUTPUT"
+
+      - name: Log in to Amazon ECR
+        env:
+          ECR_REGISTRY: ${{ steps.image.outputs.registry }}
+        run: |
+          aws ecr get-login-password --region "$AWS_REGION" \
+            | docker login --username AWS --password-stdin "$ECR_REGISTRY"
+
+      - name: Build and publish image
+        env:
+          IMAGE_URI: ${{ steps.image.outputs.image_uri }}
+        working-directory: backend
+        run: |
+          docker build --tag "$IMAGE_URI" .
+          docker push "$IMAGE_URI"
+
+      - name: Create CodeDeploy bundle
+        working-directory: backend
+        run: |
+          mkdir -p codedeploy-bundle
+          cp appspec.yml codedeploy-bundle/
+          cp -R scripts codedeploy-bundle/
+          printf '%s\n' "${{ steps.image.outputs.image_uri }}" > codedeploy-bundle/image-uri.txt
+          printf '%s\n' "$AWS_REGION" > codedeploy-bundle/aws-region.txt
+          chmod +x codedeploy-bundle/scripts/*.sh
+          cd codedeploy-bundle
+          zip -qr "../codedeploy-${GITHUB_SHA}.zip" .
+
+      - name: Upload bundle to S3
+        working-directory: backend
+        env:
+          BUNDLE_KEY: releases/${{ github.sha }}.zip
+        run: |
+          aws s3 cp "codedeploy-${GITHUB_SHA}.zip" "s3://${S3_BUCKET}/${BUNDLE_KEY}"
+
+      - name: Create CodeDeploy deployment
+        id: deployment
+        env:
+          BUNDLE_KEY: releases/${{ github.sha }}.zip
+        run: |
+          deployment_id="$(aws deploy create-deployment \
+            --application-name "$CODEDEPLOY_APPLICATION" \
+            --deployment-group-name "$CODEDEPLOY_DEPLOYMENT_GROUP" \
+            --deployment-config-name CodeDeployDefault.OneAtATime \
+            --description "Calculadora ${{ github.sha }}" \
+            --s3-location "bucket=${S3_BUCKET},key=${BUNDLE_KEY},bundleType=zip" \
+            --auto-rollback-configuration enabled=true,events=DEPLOYMENT_FAILURE \
+            --query deploymentId \
+            --output text)"
+          echo "deployment_id=${deployment_id}" >> "$GITHUB_OUTPUT"
+
+      - name: Wait for deployment result
+        env:
+          DEPLOYMENT_ID: ${{ steps.deployment.outputs.deployment_id }}
+        run: aws deploy wait deployment-successful --deployment-id "$DEPLOYMENT_ID"

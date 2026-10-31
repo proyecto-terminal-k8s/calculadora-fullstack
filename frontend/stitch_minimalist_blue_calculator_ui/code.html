@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><title>BlueCompute Workspace</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"on-secondary":"#ffffff","secondary-container":"#1e71e2","on-error":"#ffffff","tertiary-container":"#5c8cff","primary-container":"#2496ed","on-tertiary":"#ffffff","surface-dim":"#d2d9f4","outline":"#707883","error":"#ba1a1a","on-primary-fixed-variant":"#00497b","on-secondary-fixed":"#001a41","surface-container-lowest":"#ffffff","inverse-on-surface":"#eef0ff","on-primary":"#ffffff","on-secondary-fixed-variant":"#004493","on-error-container":"#93000a","inverse-surface":"#283044","error-container":"#ffdad6","on-surface":"#131b2e","tertiary-fixed":"#dae2ff","surface-container-high":"#e2e7ff","on-tertiary-fixed-variant":"#0040a1","on-primary-fixed":"#001d35","surface-bright":"#faf8ff","surface-container-low":"#f2f3ff","surface-container-highest":"#dae2fd","surface-tint":"#0062a1","tertiary-fixed-dim":"#b2c5ff","surface-container":"#eaedff","primary":"#0062a1","background":"#faf8ff","on-tertiary-fixed":"#001848","on-tertiary-container":"#002566","secondary-fixed":"#d8e2ff","surface":"#faf8ff","secondary-fixed-dim":"#adc6ff","on-primary-container":"#002c4c","on-secondary-container":"#fefcff","primary-fixed-dim":"#9ccaff","primary-fixed":"#d0e4ff","surface-variant":"#dae2fd","on-surface-variant":"#404752","on-background":"#131b2e","secondary":"#0058bb","inverse-primary":"#9ccaff","outline-variant":"#bfc7d4","tertiary":"#0b56cf"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"margin-sm":"1rem","space-md":"0.75rem","margin":"1.5rem","space-lg":"1.25rem","space-xl":"2rem","space-sm":"0.5rem","gutter":"0.75rem","gutter-sm":"0.5rem","space-xs":"0.25rem"},"fontFamily":{"label-md":["Inter"],"title-md":["Inter"],"label-sm":["Inter"],"display-md":["Inter"],"body-md":["Inter"],"display-lg-mobile":["Inter"],"display-md-mobile":["Inter"],"label-lg":["Inter"],"display-lg":["Inter"],"headline-sm":["Inter"],"body-lg":["Inter"]},"fontSize":{"label-md":["13px",{"lineHeight":"18px","letterSpacing":"0.02em","fontWeight":"600"}],"title-md":["16px",{"lineHeight":"24px","letterSpacing":"-0.005em","fontWeight":"600"}],"label-sm":["11px",{"lineHeight":"16px","letterSpacing":"0.04em","fontWeight":"600"}],"display-md":["40px",{"lineHeight":"48px","letterSpacing":"-0.02em","fontWeight":"500"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"display-lg-mobile":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"600"}],"display-md-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.01em","fontWeight":"500"}],"label-lg":["18px",{"lineHeight":"24px","fontWeight":"500"}],"display-lg":["56px",{"lineHeight":"64px","letterSpacing":"-0.03em","fontWeight":"600"}],"headline-sm":["20px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"500"}],"body-lg":["18px",{"lineHeight":"26px","fontWeight":"400"}]}}}}</script></head><body class="bg-surface font-body-md text-on-surface antialiased min-h-screen"><header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-14 max-w-7xl mx-auto px-6 flex items-center justify-between"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-sm"><div class="w-7 h-7 rounded-lg bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">calculate</span></div><span class="font-title-md text-title-md tracking-tight text-on-surface">BlueCompute</span></div><nav class="hidden md:flex items-center gap-space-xs p-space-xs bg-surface-container-low rounded-xl" data-active-classes="bg-surface-container-high text-on-surface font-label-md text-label-md rounded-lg"><a aria-current="page" class="px-space-md py-space-xs transition-colors bg-surface-container-high text-on-surface font-label-md text-label-md rounded-lg" data-path="calculator" href="#">Standard</a><a class="px-space-md py-space-xs rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" data-path="scientific-mode" href="#">Scientific</a><a class="px-space-md py-space-xs rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" data-path="converter" href="#">Converter</a><a class="px-space-md py-space-xs rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" data-path="settings" href="#">Preferences</a></nav></div><div class="flex items-center gap-space-sm"><button class="p-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors flex items-center justify-center" title="Toggle Calculation Tape" type="button"><span class="material-symbols-outlined text-[20px]">history</span></button><button class="p-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors flex items-center justify-center" title="Theme Light" type="button"><span class="material-symbols-outlined text-[20px]">light_mode</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ml-space-xs"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-14 bg-surface min-h-[calc(100vh-56px)] flex flex-col items-center justify-center p-margin-sm md:p-space-xl"><div class="flex flex-col w-full">
+<div class="relative w-full max-w-6xl mx-auto flex flex-col items-center justify-center py-space-sm md:py-space-md">
+<!-- Ambient Subtle Glow (Bounded strictly inside container) -->
+<div class="absolute -top-12 left-1/2 -translate-x-1/2 w-[580px] h-[340px] bg-gradient-to-tr from-primary/10 via-tertiary-container/15 to-transparent rounded-full blur-3xl pointer-events-none -z-10"></div>
+<!-- Main Application Deck: Two-Column Responsive Layout -->
+<div class="w-full grid grid-cols-1 lg:grid-cols-12 gap-gutter lg:gap-space-lg items-start">
+<!-- Left Column: Core Calculator Unit -->
+<div class="lg:col-span-7 flex flex-col w-full">
+<!-- Elevated Container Tile -->
+<div class="w-full bg-surface-container-lowest rounded-xl shadow-xl shadow-primary/5 p-space-md md:p-space-lg flex flex-col gap-space-md">
+<!-- Unit Header Bar -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="flex h-2.5 w-2.5 rounded-full bg-primary animate-pulse"></span>
+<span class="font-title-md text-title-md text-on-surface">Calculadora Estándar</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="px-space-sm py-0.5 rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm tracking-wide uppercase">DEC</span>
+<span class="hidden px-space-sm py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm font-semibold" id="activeOpBadge"></span>
+<button class="p-space-xs rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors flex items-center justify-center" id="copyCurrentBtn" title="Copiar resultado actual" type="button">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+</button>
+</div>
+</div>
+<!-- Digital High-Precision Display Screen -->
+<div class="w-full bg-surface-container-low rounded-xl p-space-md md:p-space-lg flex flex-col justify-end shadow-inner relative overflow-hidden min-h-[148px]">
+<!-- Top Subtle Formula Trace -->
+<div class="w-full flex items-center justify-end overflow-hidden mb-space-xs min-h-[22px]">
+<span class="font-body-md text-body-md text-on-surface-variant/80 tracking-normal whitespace-nowrap text-right select-all transition-all duration-150" id="calcExpression"></span>
+</div>
+<!-- Primary Readout Line (Dynamic Scale & Overflow Protection) -->
+<div class="w-full flex items-baseline justify-end overflow-hidden">
+<span class="font-display-lg text-display-lg text-on-surface font-semibold tracking-tight text-right select-all break-all transition-all duration-100 ease-out" id="calcDisplay">0</span>
+</div>
+<!-- Real-time dynamic subtle result preview -->
+<div class="w-full flex items-center justify-between pt-space-xs text-on-surface-variant/60 font-label-sm text-label-sm">
+<span class="flex items-center gap-1 font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[13px] text-primary">memory</span>
+<span id="statusNote">Listo</span>
+</span>
+<span class="font-label-md text-label-md text-primary/70 font-mono tracking-tight" id="previewResult"></span>
+</div>
+</div>
+<!-- Keypad Matrix: 4 Columns x 5 Rows -->
+<div class="grid grid-cols-4 gap-gutter-sm md:gap-gutter w-full select-none pt-space-xs">
+<!-- Row 1: Modifier / System Controls -->
+<button class="group relative flex items-center justify-center h-14 md:h-16 rounded-xl bg-surface-container-high text-primary font-title-md text-title-md hover:bg-surface-container-highest active:scale-[0.98] transition-all duration-100 shadow-sm" data-action="clear" type="button">
+<span class="transition-transform group-active:scale-95" id="clearLabel">AC</span>
+</button>
+<button class="group relative flex items-center justify-center h-14 md:h-16 rounded-xl bg-surface-container-high text-primary font-title-md text-title-md hover:bg-surface-container-highest active:scale-[0.98] transition-all duration-100 shadow-sm" data-action="negate" type="button">
+<span class="transition-transform group-active:scale-95 font-body-lg text-body-lg">±</span>
+</button>
+<button class="group relative flex items-center justify-center h-14 md:h-16 rounded-xl bg-surface-container-high text-primary font-title-md text-title-md hover:bg-surface-container-highest active:scale-[0.98] transition-all duration-100 shadow-sm" data-action="percent" type="button">
+<span class="transition-transform group-active:scale-95 font-body-lg text-body-lg">%</span>
+</button>
+<button class="op-btn group relative flex items-center justify-center h-14 md:h-16 rounded-xl bg-surface-container-highest text-secondary font-headline-sm text-headline-sm hover:bg-secondary hover:text-on-secondary active:scale-[0.98] transition-all duration-150 shadow-sm" data-operator="/" type="button">
+<span class="material-symbols-outlined text-[24px]">device_hub</span>
+</button>
+<!-- Row 2: Digits 7, 8, 9 & Multiply -->
+<button class="num-btn group flex items-center justify-center h-14 md:h-16 rounded-xl bg-surface-container-lowest text-on-surface font-title-md text-title-md hover:bg-surface-container-low active:bg-surface-container active:scale-[0.98] transition-all duration-100 shadow-sm" data-number="7" type="button">
+<span class="transition-transform group-active:scale-95">7</span>
+</button>
+<button class="num-btn group flex items-center justify-center h-14 md:h-16 rounded-xl bg-surface-container-lowest text-on-surface font-title-md text-title-md hover:bg-surface-container-low active:bg-surface-container active:scale-[0.98] transition-all duration-100 shadow-sm" data-number="8" type="button">
+<span class="transition-transform group-active:scale-95">8</span>
+</button>
+<button class="num-btn group flex items-center justify-center h-14 md:h-16 rounded-xl bg-surface-container-lowest text-on-surface font-title-md text-title-md hover:bg-surface-container-low active:bg-surface-container active:scale-[0.98] transition-all duration-100 shadow-sm" data-number="9" type="button">
+<span class="transition-transform group-active:scale-95">9</span>
+</button>
+<button class="op-btn group relative flex items-center justify-center h-14 md:h-16 rounded-xl bg-surface-container-highest text-secondary font-headline-sm text-headline-sm hover:bg-secondary hover:text-on-secondary active:scale-[0.98] transition-all duration-150 shadow-sm" data-operator="*" type="button">
+<span class="transition-transform group-active:scale-95 font-body-lg text-body-lg">×</span>
+</button>
+<!-- Row 3: Digits 4, 5, 6 & Subtract -->
+<button class="num-btn group flex items-center justify-center h-14 md:h-16 rounded-xl bg-surface-container-lowest text-on-surface font-title-md text-title-md hover:bg-surface-container-low active:bg-surface-container active:scale-[0.98] transition-all duration-100 shadow-sm" data-number="4" type="button">
+<span class="transition-transform group-active:scale-95">4</span>
+</button>
+<button class="num-btn group flex items-center justify-center h-14 md:h-16 rounded-xl bg-surface-container-lowest text-on-surface font-title-md text-title-md hover:bg-surface-container-low active:bg-surface-container active:scale-[0.98] transition-all duration-100 shadow-sm" data-number="5" type="button">
+<span class="transition-transform group-active:scale-95">5</span>
+</button>
+<button class="num-btn group flex items-center justify-center h-14 md:h-16 rounded-xl bg-surface-container-lowest text-on-surface font-title-md text-title-md hover:bg-surface-container-low active:bg-surface-container active:scale-[0.98] transition-all duration-100 shadow-sm" data-number="6" type="button">
+<span class="transition-transform group-active:scale-95">6</span>
+</button>
+<button class="op-btn group relative flex items-center justify-center h-14 md:h-16 rounded-xl bg-surface-container-highest text-secondary font-headline-sm text-headline-sm hover:bg-secondary hover:text-on-secondary active:scale-[0.98] transition-all duration-150 shadow-sm" data-operator="-" type="button">
+<span class="transition-transform group-active:scale-95 font-body-lg text-body-lg">−</span>
+</button>
+<!-- Row 4: Digits 1, 2, 3 & Add -->
+<button class="num-btn group flex items-center justify-center h-14 md:h-16 rounded-xl bg-surface-container-lowest text-on-surface font-title-md text-title-md hover:bg-surface-container-low active:bg-surface-container active:scale-[0.98] transition-all duration-100 shadow-sm" data-number="1" type="button">
+<span class="transition-transform group-active:scale-95">1</span>
+</button>
+<button class="num-btn group flex items-center justify-center h-14 md:h-16 rounded-xl bg-surface-container-lowest text-on-surface font-title-md text-title-md hover:bg-surface-container-low active:bg-surface-container active:scale-[0.98] transition-all duration-100 shadow-sm" data-number="2" type="button">
+<span class="transition-transform group-active:scale-95">2</span>
+</button>
+<button class="num-btn group flex items-center justify-center h-14 md:h-16 rounded-xl bg-surface-container-lowest text-on-surface font-title-md text-title-md hover:bg-surface-container-low active:bg-surface-container active:scale-[0.98] transition-all duration-100 shadow-sm" data-number="3" type="button">
+<span class="transition-transform group-active:scale-95">3</span>
+</button>
+<button class="op-btn group relative flex items-center justify-center h-14 md:h-16 rounded-xl bg-surface-container-highest text-secondary font-headline-sm text-headline-sm hover:bg-secondary hover:text-on-secondary active:scale-[0.98] transition-all duration-150 shadow-sm" data-operator="+" type="button">
+<span class="transition-transform group-active:scale-95 font-body-lg text-body-lg">+</span>
+</button>
+<!-- Row 5: Backspace, 0, Decimal, Equals -->
+<button class="group flex items-center justify-center h-14 md:h-16 rounded-xl bg-surface-container-lowest text-on-surface-variant font-title-md text-title-md hover:bg-surface-container-low active:bg-surface-container active:scale-[0.98] transition-all duration-100 shadow-sm" data-action="backspace" title="Borrar último dígito" type="button">
+<span class="material-symbols-outlined text-[20px] transition-transform group-active:scale-90">backspace</span>
+</button>
+<button class="num-btn group flex items-center justify-center h-14 md:h-16 rounded-xl bg-surface-container-lowest text-on-surface font-title-md text-title-md hover:bg-surface-container-low active:bg-surface-container active:scale-[0.98] transition-all duration-100 shadow-sm" data-number="0" type="button">
+<span class="transition-transform group-active:scale-95">0</span>
+</button>
+<button class="group flex items-center justify-center h-14 md:h-16 rounded-xl bg-surface-container-lowest text-on-surface font-title-md text-title-md hover:bg-surface-container-low active:bg-surface-container active:scale-[0.98] transition-all duration-100 shadow-sm" data-action="decimal" type="button">
+<span class="transition-transform group-active:scale-95 font-body-lg text-body-lg">.</span>
+</button>
+<button class="group relative flex items-center justify-center h-14 md:h-16 rounded-xl bg-primary text-on-primary font-headline-sm text-headline-sm hover:bg-secondary active:scale-[0.98] transition-all duration-150 shadow-lg shadow-primary/25" data-action="calculate" type="button">
+<span class="material-symbols-outlined text-[26px] transition-transform group-active:scale-90 font-bold">equal</span>
+</button>
+</div>
+<!-- Shortcuts Hint Footer -->
+<div class="flex items-center justify-between pt-space-xs text-on-surface-variant/70 font-label-sm text-label-sm">
+<span class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[15px] text-primary">keyboard</span>
+<span>Soporta teclado numérico: <strong class="text-on-surface font-medium">Enter</strong> =, <strong class="text-on-surface font-medium">Esc</strong> C</span>
+</span>
+<span class="hidden sm:inline font-mono text-[11px] text-on-surface-variant/50">IEEE-754 DP</span>
+</div>
+</div>
+</div>
+<!-- Right Column: Interactive History Tape & Workspace Stats -->
+<div class="lg:col-span-5 flex flex-col gap-space-md w-full">
+<!-- History Card -->
+<div class="w-full bg-surface-container-lowest rounded-xl shadow-xl shadow-primary/5 p-space-md md:p-space-lg flex flex-col min-h-[440px] max-h-[580px]">
+<!-- History Header -->
+<div class="flex items-center justify-between pb-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-7 h-7 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">history</span>
+</div>
+<h2 class="font-title-md text-title-md text-on-surface">Historial</h2>
+</div>
+<button class="flex items-center gap-1 text-on-surface-variant hover:text-error transition-colors font-label-sm text-label-sm px-space-xs py-1 rounded hover:bg-surface-container-low" id="clearHistoryBtn" title="Borrar todo el historial" type="button">
+<span class="material-symbols-outlined text-[16px]">delete_sweep</span>
+<span>Borrar historial</span>
+</button>
+</div>
+<!-- Calculation History List Container -->
+<div class="flex-1 overflow-y-auto space-y-space-xs pr-1 mt-space-xs" id="historyList">
+<!-- Initial Populated Sample History for Pristine Out-of-the-Box UX -->
+<div class="history-item group relative p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer flex flex-col gap-0.5" data-expr="1250 × 42" data-res="52500">
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span>1250 × 42 =</span>
+<span class="text-outline-variant font-mono text-[10px]">10:42 AM</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-title-md text-title-md text-on-surface font-semibold">52,500</span>
+<div class="opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary" title="Usar valor">history_edu</span>
+</div>
+</div>
+</div>
+<div class="history-item group relative p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer flex flex-col gap-0.5" data-expr="1200 ÷ 4" data-res="300">
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span>1200 ÷ 4 =</span>
+<span class="text-outline-variant font-mono text-[10px]">10:38 AM</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-title-md text-title-md text-on-surface font-semibold">300</span>
+<div class="opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary" title="Usar valor">history_edu</span>
+</div>
+</div>
+</div>
+<div class="history-item group relative p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer flex flex-col gap-0.5" data-expr="85 × 12" data-res="1020">
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span>85 × 12 =</span>
+<span class="text-outline-variant font-mono text-[10px]">10:31 AM</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-title-md text-title-md text-on-surface font-semibold">1,020</span>
+<div class="opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary" title="Usar valor">history_edu</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Empty History Message State (hidden by default) -->
+<div class="hidden flex-1 flex flex-col items-center justify-center p-space-lg text-center" id="historyEmpty">
+<div class="w-12 h-12 rounded-xl bg-surface-container-low flex items-center justify-center text-outline-variant mb-space-sm">
+<span class="material-symbols-outlined text-[26px]">receipt_long</span>
+</div>
+<p class="font-title-md text-title-md text-on-surface-variant">Sin registros</p>
+<p class="font-body-md text-body-md text-outline">Las operaciones realizadas aparecerán en esta cinta.</p>
+</div>
+<!-- History Quick Action Banner -->
+<div class="pt-space-sm mt-auto flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm bg-surface-container-low p-space-sm rounded-lg">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-secondary">info</span>
+<span>Clic en un elemento para recuperarlo</span>
+</span>
+<span class="font-mono text-primary font-semibold" id="historyCountBadge">3 items</span>
+</div>
+</div>
+<!-- Metric / Operations Scope Banner -->
+<div class="w-full bg-surface-container-lowest rounded-xl p-space-md shadow-md shadow-primary/5 flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">functions</span>
+</div>
+<div>
+<p class="font-title-md text-title-md text-on-surface leading-tight">Operaciones básicas</p>
+<p class="font-body-md text-body-md text-on-surface-variant text-[12px] leading-tight">Aritmética exacta de punto flotante</p>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">En línea</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Toast Notification for Clipboards -->
+<div class="fixed bottom-16 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface px-space-md py-space-xs rounded-xl shadow-lg font-label-md text-label-md opacity-0 pointer-events-none transition-all duration-200 z-50 flex items-center gap-space-xs" id="toastNotification">
+<span class="material-symbols-outlined text-[16px] text-primary-fixed">check_circle</span>
+<span id="toastMessage">Copiado al portapapeles</span>
+</div>
+</div>
+</div>
+<script>
+(() => {
+  // Pure JavaScript State & Precision Arithmetic Engine
+  const state = {
+    current: '0',
+    previous: null,
+    operation: null,
+    shouldResetDisplay: false,
+    history: [
+      { expr: '1,250 × 42', res: '52,500', time: '10:42 AM' },
+      { expr: '1,200 ÷ 4', res: '300', time: '10:38 AM' },
+      { expr: '85 × 12', res: '1,020', time: '10:31 AM' }
+    ]
+  };
+
+  const displayEl = document.getElementById('calcDisplay');
+  const exprEl = document.getElementById('calcExpression');
+  const previewEl = document.getElementById('previewResult');
+  const statusNoteEl = document.getElementById('statusNote');
+  const activeOpBadge = document.getElementById('activeOpBadge');
+  const clearLabel = document.getElementById('clearLabel');
+  const historyList = document.getElementById('historyList');
+  const historyEmpty = document.getElementById('historyEmpty');
+  const historyCountBadge = document.getElementById('historyCountBadge');
+  const clearHistoryBtn = document.getElementById('clearHistoryBtn');
+  const copyCurrentBtn = document.getElementById('copyCurrentBtn');
+  const toast = document.getElementById('toastNotification');
+  const toastMsg = document.getElementById('toastMessage');
+
+  // Format number for display with commas & guarantee zero visual clipping
+  function formatNumber(numStr) {
+    if (numStr === 'Error' || numStr === 'Infinity' || numStr === '-Infinity') return 'Error';
+    if (!numStr) return '0';
+    
+    const parts = numStr.split('.');
+    const integerPart = parts[0];
+    const decimalPart = parts.length > 1 ? parts[1] : null;
+
+    const formattedInteger = Number(integerPart).toLocaleString('en-US');
+    return decimalPart !== null ? `${formattedInteger}.${decimalPart}` : formattedInteger;
+  }
+
+  // Adjust display font size responsively based on length to completely avoid overflows
+  function updateDisplayMetrics() {
+    const rawVal = state.current;
+    const len = rawVal.length;
+
+    // Reset base font classes
+    displayEl.className = 'select-all break-all transition-all duration-100 ease-out font-semibold text-right text-on-surface';
+
+    if (len <= 8) {
+      displayEl.classList.add('font-display-lg', 'text-display-lg');
+    } else if (len <= 12) {
+      displayEl.classList.add('font-display-md', 'text-display-md');
+    } else {
+      displayEl.classList.add('font-headline-sm', 'text-headline-sm');
+    }
+
+    displayEl.textContent = formatNumber(rawVal);
+    clearLabel.textContent = (state.current !== '0' || state.previous !== null) ? 'C' : 'AC';
+
+    // Operator Badge
+    if (state.operation) {
+      const glyphMap = { '+': '+', '-': '−', '*': '×', '/': '÷' };
+      activeOpBadge.textContent = glyphMap[state.operation] || state.operation;
+      activeOpBadge.classList.remove('hidden');
+    } else {
+      activeOpBadge.classList.add('hidden');
+    }
+
+    // Secondary line
+    if (state.previous !== null && state.operation) {
+      const glyphMap = { '+': '+', '-': '−', '*': '×', '/': '÷' };
+      exprEl.textContent = `${formatNumber(state.previous)} ${glyphMap[state.operation] || state.operation}`;
+      
+      // Calculate live preview in the background
+      try {
+        const previewVal = computeResult(Number(state.previous), Number(state.current), state.operation);
+        if (isFinite(previewVal) && !isNaN(previewVal)) {
+          previewEl.textContent = `= ${formatNumber(String(previewVal))}`;
+        } else {
+          previewEl.textContent = '';
+        }
+      } catch (e) {
+        previewEl.textContent = '';
+      }
+    } else {
+      exprEl.textContent = '';
+      previewEl.textContent = '';
+    }
+  }
+
+  function computeResult(a, b, op) {
+    let result = 0;
+    switch (op) {
+      case '+': result = a + b; break;
+      case '-': result = a - b; break;
+      case '*': result = a * b; break;
+      case '/':
+        if (b === 0) return 'Error';
+        result = a / b;
+        break;
+      default: return b;
+    }
+    // High-precision cleanup to eliminate floating point glitches like 0.1 + 0.2 = 0.30000000000000004
+    return parseFloat(result.toPrecision(14));
+  }
+
+  function handleDigit(digit) {
+    if (state.shouldResetDisplay || state.current === '0') {
+      state.current = digit;
+      state.shouldResetDisplay = false;
+    } else {
+      if (state.current.length >= 16) return; // limit length to avoid memory buffer overload
+      state.current += digit;
+    }
+    statusNoteEl.textContent = 'Calculando...';
+    updateDisplayMetrics();
+  }
+
+  function handleDecimal() {
+    if (state.shouldResetDisplay) {
+      state.current = '0.';
+      state.shouldResetDisplay = false;
+      updateDisplayMetrics();
+      return;
+    }
+    if (!state.current.includes('.')) {
+      state.current += '.';
+      updateDisplayMetrics();
+    }
+  }
+
+  function handleOperator(op) {
+    const inputValue = state.current;
+
+    if (state.previous !== null && state.operation && !state.shouldResetDisplay) {
+      const evaluated = computeResult(Number(state.previous), Number(inputValue), state.operation);
+      if (evaluated === 'Error') {
+        state.current = 'Error';
+        state.previous = null;
+        state.operation = null;
+        updateDisplayMetrics();
+        return;
+      }
+      state.previous = String(evaluated);
+      state.current = String(evaluated);
+    } else {
+      state.previous = inputValue;
+    }
+
+    state.operation = op;
+    state.shouldResetDisplay = true;
+    statusNoteEl.textContent = 'Operación en curso';
+    highlightOperator(op);
+    updateDisplayMetrics();
+  }
+
+  function highlightOperator(op) {
+    document.querySelectorAll('.op-btn').forEach(btn => {
+      if (btn.getAttribute('data-operator') === op) {
+        btn.classList.add('bg-secondary', 'text-on-secondary');
+        btn.classList.remove('bg-surface-container-highest', 'text-secondary');
+      } else {
+        btn.classList.remove('bg-secondary', 'text-on-secondary');
+        btn.classList.add('bg-surface-container-highest', 'text-secondary');
+      }
+    });
+  }
+
+  function clearActiveOperatorHighlights() {
+    document.querySelectorAll('.op-btn').forEach(btn => {
+      btn.classList.remove('bg-secondary', 'text-on-secondary');
+      btn.classList.add('bg-surface-container-highest', 'text-secondary');
+    });
+  }
+
+  function handleEquals() {
+    if (state.previous === null || !state.operation) return;
+
+    const opSymbol = { '+': '+', '-': '−', '*': '×', '/': '÷' }[state.operation] || state.operation;
+    const expressionString = `${formatNumber(state.previous)} ${opSymbol} ${formatNumber(state.current)}`;
+    const finalVal = computeResult(Number(state.previous), Number(state.current), state.operation);
+
+    if (finalVal === 'Error') {
+      state.current = 'Error';
+      statusNoteEl.textContent = 'División por cero';
+    } else {
+      const resString = String(finalVal);
+      addHistoryRecord(expressionString, formatNumber(resString), resString);
+      state.current = resString;
+      statusNoteEl.textContent = 'Resultado final';
+    }
+
+    state.previous = null;
+    state.operation = null;
+    state.shouldResetDisplay = true;
+    clearActiveOperatorHighlights();
+    updateDisplayMetrics();
+  }
+
+  function handleClear() {
+    if (state.current !== '0') {
+      state.current = '0';
+    } else {
+      state.previous = null;
+      state.operation = null;
+      clearActiveOperatorHighlights();
+    }
+    state.shouldResetDisplay = false;
+    statusNoteEl.textContent = 'Listo';
+    updateDisplayMetrics();
+  }
+
+  function handleNegate() {
+    if (state.current === '0' || state.current === 'Error') return;
+    if (state.current.startsWith('-')) {
+      state.current = state.current.slice(1);
+    } else {
+      state.current = '-' + state.current;
+    }
+    updateDisplayMetrics();
+  }
+
+  function handlePercentage() {
+    if (state.current === 'Error') return;
+    const num = Number(state.current) / 100;
+    state.current = String(parseFloat(num.toPrecision(12)));
+    updateDisplayMetrics();
+  }
+
+  function handleBackspace() {
+    if (state.shouldResetDisplay || state.current === 'Error') return;
+    if (state.current.length > 1) {
+      state.current = state.current.slice(0, -1);
+    } else {
+      state.current = '0';
+    }
+    updateDisplayMetrics();
+  }
+
+  // History Management
+  function addHistoryRecord(expr, formattedRes, rawRes) {
+    const now = new Date();
+    const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    
+    state.history.unshift({
+      expr: expr,
+      res: formattedRes,
+      raw: rawRes,
+      time: timeStr
+    });
+
+    renderHistory();
+  }
+
+  function renderHistory() {
+    if (state.history.length === 0) {
+      historyList.innerHTML = '';
+      historyEmpty.classList.remove('hidden');
+      historyCountBadge.textContent = '0 items';
+      return;
+    }
+
+    historyEmpty.classList.add('hidden');
+    historyCountBadge.textContent = `${state.history.length} items`;
+    historyList.innerHTML = '';
+
+    state.history.forEach((item) => {
+      const row = document.createElement('div');
+      row.className = 'history-item group relative p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer flex flex-col gap-0.5';
+      row.innerHTML = `
+        <div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+          <span>${item.expr} =</span>
+          <span class="text-outline-variant font-mono text-[10px]">${item.time}</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="font-title-md text-title-md text-on-surface font-semibold">${item.res}</span>
+          <div class="opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
+            <span class="material-symbols-outlined text-[16px] text-primary" title="Usar valor">history_edu</span>
+          </div>
+        </div>
+      `;
+
+      row.addEventListener('click', () => {
+        // Tap entry recalls result directly back to display
+        state.current = (item.raw || item.res).replace(/,/g, '');
+        state.shouldResetDisplay = true;
+        updateDisplayMetrics();
+        showToast(`Valor ${item.res} transferido`);
+      });
+
+      historyList.appendChild(row);
+    });
+  }
+
+  function showToast(message) {
+    toastMsg.textContent = message;
+    toast.classList.remove('opacity-0', 'pointer-events-none');
+    toast.classList.add('opacity-100');
+    setTimeout(() => {
+      toast.classList.add('opacity-0', 'pointer-events-none');
+      toast.classList.remove('opacity-100');
+    }, 2200);
+  }
+
+  // Global Event Delegation for Keypad Matrix
+  document.querySelectorAll('[data-number]').forEach(btn => {
+    btn.addEventListener('click', () => handleDigit(btn.getAttribute('data-number')));
+  });
+
+  document.querySelectorAll('[data-operator]').forEach(btn => {
+    btn.addEventListener('click', () => handleOperator(btn.getAttribute('data-operator')));
+  });
+
+  document.querySelectorAll('[data-action]').forEach(btn => {
+    const action = btn.getAttribute('data-action');
+    btn.addEventListener('click', () => {
+      switch (action) {
+        case 'clear': handleClear(); break;
+        case 'decimal': handleDecimal(); break;
+        case 'calculate': handleEquals(); break;
+        case 'negate': handleNegate(); break;
+        case 'percent': handlePercentage(); break;
+        case 'backspace': handleBackspace(); break;
+      }
+    });
+  });
+
+  // History Clear Action
+  clearHistoryBtn.addEventListener('click', () => {
+    state.history = [];
+    renderHistory();
+    showToast('Historial borrado');
+  });
+
+  // Copy Result Action
+  copyCurrentBtn.addEventListener('click', () => {
+    navigator.clipboard.writeText(state.current).then(() => {
+      showToast('Resultado copiado al portapapeles');
+    }).catch(() => {
+      showToast('Valor: ' + state.current);
+    });
+  });
+
+  // Attach sample history item click events from default HTML
+  document.querySelectorAll('.history-item').forEach(elem => {
+    elem.addEventListener('click', () => {
+      const res = elem.getAttribute('data-res');
+      if (res) {
+        state.current = res;
+        state.shouldResetDisplay = true;
+        updateDisplayMetrics();
+        showToast(`Valor ${formatNumber(res)} transferido`);
+      }
+    });
+  });
+
+  // Keyboard navigation & Numpad Listener
+  window.addEventListener('keydown', (e) => {
+    // Digits
+    if (e.key >= '0' && e.key <= '9') {
+      handleDigit(e.key);
+      e.preventDefault();
+    } else if (e.key === '.' || e.key === ',') {
+      handleDecimal();
+      e.preventDefault();
+    } else if (e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/') {
+      handleOperator(e.key);
+      e.preventDefault();
+    } else if (e.key === 'Enter' || e.key === '=') {
+      handleEquals();
+      e.preventDefault();
+    } else if (e.key === 'Escape') {
+      handleClear();
+      e.preventDefault();
+    } else if (e.key === 'Backspace') {
+      handleBackspace();
+      e.preventDefault();
+    } else if (e.key === '%') {
+      handlePercentage();
+      e.preventDefault();
+    }
+  });
+
+  // Initialize display metrics
+  updateDisplayMetrics();
+})();
+</script></main><footer class="w-full bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.02)]"><div class="h-14 max-w-7xl mx-auto px-6 flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm"><span>© 2025 BlueCompute Cloud Systems. All rights reserved.</span><div class="flex items-center gap-space-lg"><span class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-primary text-[14px]">bolt</span>Precision Engine v4.2</span><span class="text-outline-variant">|</span><span>Ready</span></div></div></footer></body></html>

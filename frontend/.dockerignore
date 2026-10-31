@@ -1,0 +1,5 @@
+.git
+node_modules
+dist
+npm-debug.log
+stitch_minimalist_blue_calculator_ui.zip
